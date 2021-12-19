@@ -52,6 +52,7 @@ function mainDisplayPrint(string) {
 
 // Print to the calculator sub-display
 function subDisplayPrint(string) {
+    cleanOutput(string);
     subDisplay.innerText = string;
 }
 
@@ -80,15 +81,37 @@ function equationState() {
 
 }
 
+// Takes the number that is about to be printed and makes it a suitable length if it is too long.
+function cleanOutput(string) {
+    if (string.length >= 10) {
+        console.log("this should be shortened!");
+    }
+}
+
 ///////////////////////////////
 // EVENT LISTENER FUNCTIONS //
 /////////////////////////////
+
+function handleKeyInput(e) {
+
+    console.log(e.keyCode);
+    let keyPressed = '';
+    if ((e.keyCode >= 48) && (e.keyCode <= 57)) {
+        numberKey = (e.keyCode - 48).toString();
+        onNumberEntered(numberKey);
+    }
+}
+
 
 // What to do when user clicks on a number
 // buttonPressed is a string parameter
 function onNumberEntered(buttonPressed) {
 
     state = equationState();
+
+    if (current_number.length >= 7) {
+        return;
+    }
 
     if ((state === 'HN') || (state === 'NNNS')) {
         current_number += buttonPressed;
@@ -172,12 +195,12 @@ function onChangeSignEntered() {
         subDisplayPrint(equationNumber);
         mainDisplayPrint(current_number);
     }
-/*
-    if ((state === 'HNHS') && (current_number !== '') {
-        let newNum = parseFloat(current_number) * -1
-        current_number *= -1;
-        mainDisplayPrint()
-    }*/
+
+    if ((state === 'HNHS') && (current_number !== '')) {
+        let newNum = parseFloat(current_number) * -1;
+        current_number = newNum.toString();
+        mainDisplayPrint(current_number);
+    }
     
 }
 ///////////////////////////////////
@@ -185,8 +208,8 @@ function onChangeSignEntered() {
 /////////////////////////////////
 
 buttons = document.querySelectorAll(".button-text");
-mainDisplay = document.querySelector(".main-display");
-subDisplay = document.querySelector(".sub-display");
+mainDisplay = document.querySelector(".screen .main-display p");
+subDisplay = document.querySelector(".screen .sub-display p");
 
 ///////////////////////////////////////////////
 // Add appropriate listener for each button //
@@ -223,12 +246,15 @@ buttons.forEach(function(element) {
     }
 });
 
+// The listener for the keys 
 
+window.addEventListener("keydown", handleKeyInput);
 
 
 /////////////////
 // States /// //
 ///////////////
+
 
 // The operator used in the equation
 let equationOperator = ''
@@ -239,7 +265,9 @@ let equationComplete = false;
 // The current number being on the main display
 current_number = ''
 
-
+// Other global var 
+let keyMap = {'%':165, '+':171, '-':173, '=':61, '/':111, '*':170}
+console.log(keyMap['%']);
 
 
 

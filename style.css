@@ -27,35 +27,68 @@ body {
     display: grid;
     padding: 5px;
     padding-bottom: 0px;
-    grid-template-columns: 3fr 5fr;
-
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr 5fr;
 }
 
 .screen .main-display,
 .screen .sub-display {
     display: flex;
-    padding: 20px;
+    background-color: #EDB88B;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    box-sizing: border-box;
 }
 
-.screen .main-display {
-    background-color: #FAD8D6;
-    justify-content: right;
+.screen .sub-display p {
+    padding-right: 10px;
+}
+
+.screen .main-display p {
+    font-size: 46px;
+    padding-right: 10px;
+}
+
+
+
+/*
+.screen .main-display,
+.screen .sub-display {
+    display: flex;
+    background-color: #EDB88B;
+}
+
+.screen p {
+    background-color: #ebcbaf;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #2E282A;
+}
+
+.screen .main-display {*/
+    /*background-color: #FAD8D6;*/
+    /*justify-content: right;
     align-items: flex-end;
 }
 .screen .main-display p {
-    font-size: 50px;
+    font-size: 40px;
+    width: 200px;
+    height: 47px;
 }
 
 .screen .sub-display {
-    background-color: #EDB88B;
-    border-right: solid #2E282A 5px;
     justify-content: left;
     align-items: flex-start;
 }
 
 .screen .sub-display p {
-    font-size: 25px;
+    font-size: 20px;
+    height: 23px;
+    width: 90px;
 }
+
+*/
 
 .buttons {
     background-color: #2E282A;
